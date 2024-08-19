@@ -69,7 +69,6 @@ namespace reportesApi
             services.AddSingleton<ContabilidadService>();
             services.AddSingleton<ComprasService>();
             services.AddSingleton<MapeosService>();
-            services.AddSingleton<SistemaService>();
 
             services.AddCors();
 
