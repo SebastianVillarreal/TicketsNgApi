@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using reportesApi.DataContext;
 using reportesApi.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace reportesApi.Services
@@ -37,6 +38,42 @@ namespace reportesApi.Services
             {
                 throw ex;
             }
+        }
+
+        public List<SistemaModelGet> GetAllSistemas()
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<SistemaModelGet> lista = new List<SistemaModelGet>();
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetAllSistemas", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new SistemaModelGet
+                        {
+                            Sistema_Id = int.Parse(dr["Id"].ToString()),
+                            Sistema_Nombre = dr["Nombre"].ToString(),
+                            Sistema_Estatus = int.Parse(dr["Estatus"].ToString()),
+                            Usuario_Registra = int.Parse(dr["UsuarioRegistra"].ToString()),
+                            Fecha_Registro = dr["FechaRegistro"].ToString(),
+                            Sistema_Tipo = int.Parse(dr["Tipo"].ToString())
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
         }
         
 
