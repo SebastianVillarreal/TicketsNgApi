@@ -137,6 +137,23 @@ namespace reportesApi.Services
             }
         }
         
+        public void DeleteSistema(int Id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = Id});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_DeleteSistema", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
 
 
 
