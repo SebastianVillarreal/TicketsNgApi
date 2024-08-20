@@ -32,7 +32,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpPost("InsertSistema")]
-        public IActionResult InsertGrupoMateria([FromBody] SistemaModelInsert req )
+        public IActionResult InsertSistema([FromBody] SistemaModelInsert req )
         {
             var objectResponse = Helper.GetStructResponse();
             try
@@ -98,5 +98,27 @@ namespace reportesApi.Controllers
             return new JsonResult(objectResponse);
         }
 
+        [HttpPut("UpdateSistema")]
+        public IActionResult Up([FromBody] SisteamModelUpdate req )
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargada con éxito";
+                _sistemasService.UpdateSistema(req);
+
+            }
+
+            catch (Exception ex)
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                objectResponse.success = false;
+                objectResponse.message = ex.Message;
+            }
+
+            return new JsonResult(objectResponse);
+        }
     }
 }

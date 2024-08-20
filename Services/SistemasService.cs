@@ -115,7 +115,27 @@ namespace reportesApi.Services
             return lista;
         }
         
+        public void UpdateSistema(SisteamModelUpdate sistema)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
 
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Id});
+            parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = sistema.Sistema_Nombre });
+            parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Estatus});
+            parametros.Add(new SqlParameter { ParameterName = "@UsuarioRegistra", SqlDbType = SqlDbType.Int, Value = sistema.Usuario_Registra });
+            parametros.Add(new SqlParameter { ParameterName = "@Tipo", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Tipo });
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateSistema", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
         
 
 
