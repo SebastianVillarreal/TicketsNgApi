@@ -75,6 +75,45 @@ namespace reportesApi.Services
 
             return lista;
         }
+
+        public List<SistemaModelGet> GetSistemaById(int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<SistemaModelGet> lista = new List<SistemaModelGet>();
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
+
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetSistemaById", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new SistemaModelGet
+                        {
+                            Sistema_Id = int.Parse(dr["Id"].ToString()),
+                            Sistema_Nombre = dr["Nombre"].ToString(),
+                            Sistema_Estatus = int.Parse(dr["Estatus"].ToString()),
+                            Usuario_Registra = int.Parse(dr["UsuarioRegistra"].ToString()),
+                            Fecha_Registro = dr["FechaRegistro"].ToString(),
+                            Sistema_Tipo = int.Parse(dr["Tipo"].ToString())
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
         
 
         

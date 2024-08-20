@@ -76,5 +76,27 @@ namespace reportesApi.Controllers
             return new JsonResult(objectResponse);
         }
 
+        [HttpGet("GetSistemaById")]
+        public IActionResult GetAllSistemas([FromQuery] int Id)
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargada con éxito";
+                var resultado = _sistemasService.GetSistemaById(Id);
+                objectResponse.response = resultado;
+            }
+            catch (Exception ex)
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                objectResponse.success = false;
+                objectResponse.message = ex.Message;
+            }
+
+            return new JsonResult(objectResponse);
+        }
+
     }
 }
