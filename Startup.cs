@@ -61,14 +61,7 @@ namespace reportesApi
 
             // Get Services LB
             services.AddSingleton<LoginService>();
-            services.AddSingleton<ArticulosService>();
-            services.AddSingleton<TicketService>();
-            services.AddSingleton<OperationService>();
-            services.AddSingleton<FuncionesExtraService>();
-            services.AddSingleton<SeparadosService>();
-            services.AddSingleton<ContabilidadService>();
-            services.AddSingleton<ComprasService>();
-            services.AddSingleton<MapeosService>();
+            services.AddSingleton<SistemaService>();
 
             services.AddCors();
 
