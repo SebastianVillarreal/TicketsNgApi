@@ -7,7 +7,7 @@ namespace reportesApi.Models
         public int Estatus_Activo {get; set;}
     }
 
-    public class EstatusTicketModelGet
+    public class EstatusTicketModel
     {
         public int Estatus_Id {get; set;}
         public string Estatus_Nombre {get; set;}

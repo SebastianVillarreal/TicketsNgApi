@@ -37,12 +37,12 @@ namespace reportesApi.Services
             }
         }
 
-        public List<EstatusTicketModelGet> GetAllEstatus()
+        public List<EstatusTicketModel> GetAllEstatus()
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
 
-            List<EstatusTicketModelGet> lista = new List<EstatusTicketModelGet>();
+            List<EstatusTicketModel> lista = new List<EstatusTicketModel>();
 
             try
             {
@@ -51,7 +51,7 @@ namespace reportesApi.Services
                 {
                     foreach(DataRow dr in ds.Tables[0].Rows)
                     {
-                        lista.Add(new EstatusTicketModelGet
+                        lista.Add(new EstatusTicketModel
                         {
                             Estatus_Id = int.Parse(dr["Id"].ToString()),
                             Estatus_Nombre = dr["Nombre"].ToString(),
@@ -70,12 +70,12 @@ namespace reportesApi.Services
             return lista;
         } 
 
-        public List<EstatusTicketModelGet> GetEstatusById(int id)
+        public List<EstatusTicketModel> GetEstatusById(int id)
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
 
-            List<EstatusTicketModelGet> lista = new List<EstatusTicketModelGet>();
+            List<EstatusTicketModel> lista = new List<EstatusTicketModel>();
 
             parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
 
@@ -87,7 +87,7 @@ namespace reportesApi.Services
                 {
                     foreach(DataRow dr in ds.Tables[0].Rows)
                     {
-                        lista.Add(new EstatusTicketModelGet
+                        lista.Add(new EstatusTicketModel
                         {
                             Estatus_Id = int.Parse(dr["Id"].ToString()),
                             Estatus_Nombre = dr["Nombre"].ToString(),
@@ -104,6 +104,26 @@ namespace reportesApi.Services
             }
 
             return lista;
+        }
+
+        public void UpdateEstatusTicket(EstatusTicketModel estatus)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.VarChar, Value = estatus.Estatus_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = estatus.Estatus_Nombre });
+            parametros.Add(new SqlParameter { ParameterName = "@Activo", SqlDbType = SqlDbType.Int, Value = estatus.Estatus_Activo});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateEstatusTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
 
     }
