@@ -37,5 +37,39 @@ namespace reportesApi.Services
             }
         }
 
+        public List<TicketUsuarioModelGet> GetAllTicketsUsuarios()
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<TicketUsuarioModelGet> lista = new List<TicketUsuarioModelGet>();
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetAllTicketsUsuarios", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new TicketUsuarioModelGet
+                        {
+                            TicketUsuario_Id = int.Parse(dr["Id"].ToString()),
+                            Ticket_Id = int.Parse(dr["IdTicket"].ToString()),
+                            Usuario_Id = int.Parse(dr["IdUsuarioAsignado"].ToString()),
+                            Fecha_Registro = dr["Fecha"].ToString(),
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
+
     }
 }
