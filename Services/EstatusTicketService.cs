@@ -37,5 +37,38 @@ namespace reportesApi.Services
             }
         }
 
+        public List<EstatusTicketModelGet> GetAllEstatus()
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<EstatusTicketModelGet> lista = new List<EstatusTicketModelGet>();
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetAllEstatusTickets", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new EstatusTicketModelGet
+                        {
+                            Estatus_Id = int.Parse(dr["Id"].ToString()),
+                            Estatus_Nombre = dr["Nombre"].ToString(),
+                            Estatus_Activo = int.Parse(dr["Activo"].ToString()),
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        } 
+
     }
 }
