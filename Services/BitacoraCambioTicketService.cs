@@ -115,5 +115,28 @@ namespace reportesApi.Services
 
             return lista;
         }
+
+        public void UpdateCambioTicket(CambioTicketModelUpdate cambio)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = cambio.CambioTicket_Id});
+            parametros.Add(new SqlParameter { ParameterName = "@IdTicket", SqlDbType = SqlDbType.VarChar, Value = cambio.Ticket_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@Accion", SqlDbType = SqlDbType.VarChar, Value = cambio.CambioTicket_Accion });
+            parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = cambio.CambioTicket_Estatus});
+            parametros.Add(new SqlParameter { ParameterName = "@Comentarios", SqlDbType = SqlDbType.VarChar, Value = cambio.CambioTicket_Comentario });
+            parametros.Add(new SqlParameter { ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = cambio.Usuario_Id });
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateBitacoraCambioTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
     }
 }
