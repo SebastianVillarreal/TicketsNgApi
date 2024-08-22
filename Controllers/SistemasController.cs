@@ -77,7 +77,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpGet("GetSistemaById")]
-        public IActionResult GetAllSistemas([FromQuery] int Id)
+        public IActionResult GetSistemasById([FromQuery] int Id)
         {
             var objectResponse = Helper.GetStructResponse();
             try
