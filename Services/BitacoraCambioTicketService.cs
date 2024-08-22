@@ -76,5 +76,44 @@ namespace reportesApi.Services
             return lista;
         }
 
+        public List<BitacoraCambiosTicketsModelGet> GetCambioTicketById(int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<BitacoraCambiosTicketsModelGet> lista = new List<BitacoraCambiosTicketsModelGet>();
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
+
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetBitacoraCambioTicketById", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new BitacoraCambiosTicketsModelGet
+                        {
+                            CambioTicket_Id = int.Parse(dr["Id"].ToString()),
+                            Ticket_Id = int.Parse(dr["IdTicket"].ToString()),
+                            CambioTicket_Accion = dr["Accion"].ToString(),
+                            CambioTicket_Estatus = int.Parse(dr["Estatus"].ToString()),
+                            CambioTicket_Comentario = dr["Comentarios"].ToString(),
+                            Usuario_Id = int.Parse(dr["IdUsuario"].ToString()),
+                            Fecha_Registro = dr["Fecha"].ToString(),
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
     }
 }
