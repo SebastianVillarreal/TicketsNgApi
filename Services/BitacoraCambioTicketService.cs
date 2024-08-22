@@ -138,5 +138,23 @@ namespace reportesApi.Services
                 throw ex;
             }
         }
+
+         public void DeleteCambioTicket(int Id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = Id});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_DeleteBitacoraCambioTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
     }
 }
