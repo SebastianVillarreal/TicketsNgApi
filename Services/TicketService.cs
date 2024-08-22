@@ -78,5 +78,45 @@ namespace reportesApi.Services
             return lista;
         }
 
+        public List<TicketModelGet> GetTicketById(int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<TicketModelGet> lista = new List<TicketModelGet>();
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
+
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetTicketById", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new TicketModelGet
+                        {
+                            Ticket_Id = int.Parse(dr["Id"].ToString()),
+                            Usuario_Registra = int.Parse(dr["IdUsuarioRegistra"].ToString()),
+                            Ticket_Tipo = int.Parse(dr["TipoTicket"].ToString()),
+                            Modulo_Id = int.Parse(dr["IdModulo"].ToString()),
+                            Ticket_Descripcion = dr["Descripcion"].ToString(),
+                            Fecha_Registro = dr["Fecha"].ToString(),
+                            Ticket_Estatus = int.Parse(dr["Estatus"].ToString())
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
+
     }
 }
