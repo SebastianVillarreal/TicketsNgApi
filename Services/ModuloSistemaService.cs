@@ -113,6 +113,27 @@ namespace reportesApi.Services
             return lista;
         }
         
+        public void UpdateModulo(ModuloSistemaModelUpdate modulo)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = modulo.Modulo_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@IdSistema", SqlDbType = SqlDbType.Int, Value = modulo.Sistema_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = modulo.Modulo_Nombre });
+            parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = modulo.Modulo_Estatus});
+            parametros.Add(new SqlParameter { ParameterName = "@UsuarioRegistra", SqlDbType = SqlDbType.Int, Value = modulo.Usuario_Registra });
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateModuloSistema", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
 
 
     }

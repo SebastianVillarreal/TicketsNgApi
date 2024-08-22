@@ -55,7 +55,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpGet("GetAllModulos")]
-        public IActionResult GetModulo()
+        public IActionResult GetAllModulos()
         {
             var objectResponse = Helper.GetStructResponse();
             try
@@ -88,6 +88,29 @@ namespace reportesApi.Controllers
                 var resultado = _modulosService.GetModuloById(Id);
                 objectResponse.response = resultado;
             }
+            catch (Exception ex)
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                objectResponse.success = false;
+                objectResponse.message = ex.Message;
+            }
+
+            return new JsonResult(objectResponse);
+        }
+
+        [HttpPut("UpdateModulo")]
+        public IActionResult UpdateModulo([FromBody] ModuloSistemaModelUpdate req)
+        {
+             var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.success = true;
+                objectResponse.message = "data cargada con éxito";
+                _modulosService.UpdateModulo(req);
+
+            }
+
             catch (Exception ex)
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;

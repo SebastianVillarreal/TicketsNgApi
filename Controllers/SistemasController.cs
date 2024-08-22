@@ -99,7 +99,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpPut("UpdateSistema")]
-        public IActionResult Up([FromBody] SisteamModelUpdate req )
+        public IActionResult UpdateSistema([FromBody] SisteamModelUpdate req )
         {
             var objectResponse = Helper.GetStructResponse();
             try
