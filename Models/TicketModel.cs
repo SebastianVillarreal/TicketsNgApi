@@ -20,4 +20,14 @@ namespace reportesApi.Models
         public string Fecha_Registro {get; set;}
         public int Ticket_Estatus {get; set;}
     }
+
+    public class TicketModelUpdate
+    {
+        public int Ticket_Id { get; set; }
+        public int Usuario_Registra {get; set;}
+        public int Ticket_Tipo {get; set;}
+        public int Modulo_Id {get; set;}
+        public string Ticket_Descripcion {get; set;}
+        public int Ticket_Estatus {get; set;}
+    }
 }
