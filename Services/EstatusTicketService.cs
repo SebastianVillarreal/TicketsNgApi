@@ -106,7 +106,7 @@ namespace reportesApi.Services
             return lista;
         }
 
-        public void UpdateEstatusTicket(EstatusTicketModel estatus)
+        public void UpdateEstatus(EstatusTicketModel estatus)
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
@@ -118,6 +118,24 @@ namespace reportesApi.Services
             try
             {
                 dac.ExecuteNonQuery("sp_UpdateEstatusTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+        public void DeleteEstatus(int Id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = Id});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_DeleteEstatusTicket", parametros);
             }
             catch (Exception ex)
             {
