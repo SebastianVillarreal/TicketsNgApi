@@ -62,6 +62,7 @@ namespace reportesApi
             // Get Services LB
             services.AddSingleton<LoginService>();
             services.AddSingleton<SistemaService>();
+            services.AddSingleton<ModuloSistemaService>();
 
             services.AddCors();
 
