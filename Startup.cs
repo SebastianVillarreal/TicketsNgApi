@@ -63,6 +63,7 @@ namespace reportesApi
             services.AddSingleton<LoginService>();
             services.AddSingleton<SistemaService>();
             services.AddSingleton<ModuloSistemaService>();
+            services.AddSingleton<EstatusTicketService>();
 
             services.AddCors();
 
