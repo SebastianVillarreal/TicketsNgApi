@@ -40,8 +40,11 @@ namespace reportesApi.Services
                             Ticket_Id = int.Parse(dr["Id"].ToString()),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
                             Ticket_Fecha = dr["Fecha"].ToString(),
+                            Tipo_Id = int.Parse(dr["TipoId"].ToString()),
+                            Tipo_Nombre = dr["Tipo"].ToString(),
                             Modulo_Nombre = dr["Modulo"].ToString(),
                             Sistema_Nombre = dr["Sistema"].ToString(),
+                            Estatus_Id = int.Parse(dr["EstatusId"].ToString()),
                             Estatus_Nombre = dr["Estatus"].ToString(),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Usuario_Asignado = dr["UsuarioAsignado"].ToString()
