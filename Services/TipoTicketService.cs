@@ -1,0 +1,43 @@
+using System;
+using System.Collections;
+using System.Data;
+using System.Data.SqlClient;
+using reportesApi.DataContext;
+using reportesApi.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace reportesApi.Services
+{
+    public class TipoTicketService
+    {
+        private string connection;
+
+        public TipoTicketService(IMarcatelDatabaseSetting settings)
+        {
+            connection = settings.ConnectionString;
+        }
+
+        public void InsertTipo(TipoTicketModelInsert tipo)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = tipo.Tipo_Nombre });
+            parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = tipo.Tipo_Estatus});        
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_InsertTipoTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+
+    }
+
+}
