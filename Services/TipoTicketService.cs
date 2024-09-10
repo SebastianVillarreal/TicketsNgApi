@@ -70,6 +70,41 @@ namespace reportesApi.Services
             return lista;
         } 
 
+        public List<TipoTicketModel> GetTipoById(int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<TipoTicketModel> lista = new List<TipoTicketModel>();
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
+
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetTipoTicketById", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new TipoTicketModel
+                        {
+                            Tipo_Id = int.Parse(dr["Id"].ToString()),
+                            Tipo_Nombre = dr["Nombre"].ToString(),
+                            Tipo_Estatus = int.Parse(dr["Estatus"].ToString()),
+                        });
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
 
     }
 
