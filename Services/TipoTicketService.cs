@@ -106,6 +106,26 @@ namespace reportesApi.Services
             return lista;
         }
 
+        public void UpdateTipo(TipoTicketModel tipo)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.VarChar, Value = tipo.Tipo_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = tipo.Tipo_Nombre });
+            parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = tipo.Tipo_Estatus});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateTipoTicket", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
     }
 
 }
