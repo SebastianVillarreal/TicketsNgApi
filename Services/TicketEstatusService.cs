@@ -39,6 +39,7 @@ namespace reportesApi.Services
                         {
                             Ticket_Id = int.Parse(dr["Id"].ToString()),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
+                            Ticket_Comentarios = dr["Comentarios"].ToString(),
                             Ticket_Fecha = dr["Fecha"].ToString(),
                             Tipo_Ticket_Id = int.Parse(dr["TipoId"].ToString()),
                             Tipo_Ticket_Nombre = dr["Tipo"].ToString(),

@@ -5,6 +5,7 @@ namespace reportesApi.Models
     {
         public int Ticket_Id {get; set;}
         public string Ticket_Descripcion {get; set;}
+        public string Ticket_Comentarios {get; set;}
         public string Ticket_Fecha {get; set;}
         public int Tipo_Ticket_Id {get; set;}
         public string Tipo_Ticket_Nombre {get; set;}
