@@ -59,9 +59,10 @@ namespace reportesApi.Services
                         {
                             Modulo_Id = int.Parse(dr["Id"].ToString()),
                             Sistema_Id = int.Parse(dr["IdSistema"].ToString()),
+                            Sistema_Nombre = dr["Sistema"].ToString(),
                             Modulo_Nombre = dr["Nombre"].ToString(),
                             Modulo_Estatus = int.Parse(dr["Estatus"].ToString()),
-                            Usuario_Registra = int.Parse(dr["UsuarioRegistra"].ToString()),
+                            Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Fecha_Registro = dr["Fecha"].ToString()                        
                         });
                     }
@@ -96,9 +97,10 @@ namespace reportesApi.Services
                         {
                             Modulo_Id = int.Parse(dr["Id"].ToString()),
                             Sistema_Id = int.Parse(dr["IdSistema"].ToString()),
+                            Sistema_Nombre = dr["Sistema"].ToString(),
                             Modulo_Nombre = dr["Nombre"].ToString(),
                             Modulo_Estatus = int.Parse(dr["Estatus"].ToString()),
-                            Usuario_Registra = int.Parse(dr["UsuarioRegistra"].ToString()),
+                            Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Fecha_Registro = dr["Fecha"].ToString()
                         });
                     }
