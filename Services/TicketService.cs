@@ -29,6 +29,7 @@ namespace reportesApi.Services
             parametros.Add(new SqlParameter { ParameterName = "@TipoTicket", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Tipo });
             parametros.Add(new SqlParameter { ParameterName = "@IdModulo", SqlDbType = SqlDbType.Int, Value = ticket.Modulo_Id });
             parametros.Add(new SqlParameter { ParameterName = "@Descripcion", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Descripcion });
+            parametros.Add(new SqlParameter { ParameterName = "@Comentarios", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Comentarios  });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Estatus});
 
             try
@@ -62,6 +63,7 @@ namespace reportesApi.Services
                             Ticket_Tipo = int.Parse(dr["TipoTicket"].ToString()),
                             Modulo_Id = int.Parse(dr["IdModulo"].ToString()),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
+                            Ticket_Comentarios = dr["Comentarios"].ToString(),
                             Fecha_Registro = dr["Fecha"].ToString(),
                             Ticket_Estatus = int.Parse(dr["Estatus"].ToString())
                         });
@@ -102,6 +104,7 @@ namespace reportesApi.Services
                             Ticket_Tipo = int.Parse(dr["TipoTicket"].ToString()),
                             Modulo_Id = int.Parse(dr["IdModulo"].ToString()),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
+                            Ticket_Comentarios = dr["Comentarios"].ToString(),
                             Fecha_Registro = dr["Fecha"].ToString(),
                             Ticket_Estatus = int.Parse(dr["Estatus"].ToString())
                         });
@@ -127,6 +130,7 @@ namespace reportesApi.Services
             parametros.Add(new SqlParameter { ParameterName = "@TipoTicket", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Tipo });
             parametros.Add(new SqlParameter { ParameterName = "@IdModulo", SqlDbType = SqlDbType.Int, Value = ticket.Modulo_Id });
             parametros.Add(new SqlParameter { ParameterName = "@Descripcion", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Descripcion });
+            parametros.Add(new SqlParameter { ParameterName = "@Comentarios", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Comentarios });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Estatus});
 
             try
