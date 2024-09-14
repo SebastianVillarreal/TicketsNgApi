@@ -7,6 +7,7 @@ namespace reportesApi.Models
         public int Ticket_Tipo {get; set;}
         public int Modulo_Id {get; set;}
         public string Ticket_Descripcion {get; set;}
+        public string Ticket_Comentarios {get; set;}
         public int Ticket_Estatus {get; set;}
     }
 
@@ -17,6 +18,7 @@ namespace reportesApi.Models
         public int Ticket_Tipo {get; set;}
         public int Modulo_Id {get; set;}
         public string Ticket_Descripcion {get; set;}
+        public string Ticket_Comentarios {get; set;}
         public string Fecha_Registro {get; set;}
         public int Ticket_Estatus {get; set;}
     }
@@ -28,6 +30,7 @@ namespace reportesApi.Models
         public int Ticket_Tipo {get; set;}
         public int Modulo_Id {get; set;}
         public string Ticket_Descripcion {get; set;}
+        public string Ticket_Comentarios {get; set;}
         public int Ticket_Estatus {get; set;}
     }
 }
