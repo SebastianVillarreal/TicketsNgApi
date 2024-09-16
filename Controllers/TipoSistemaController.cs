@@ -115,5 +115,25 @@ namespace reportesApi.Controllers
             return new JsonResult(objectResponse);
         }
 
+        [HttpDelete("DeleteTipoSistema")]
+        public IActionResult DeleteTipoSistema([FromQuery] int id)
+        {
+            var objectResponse = Helper.GetStructResponse();
+            try
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
+                objectResponse.success = true;
+                objectResponse.message = "data cargada con éxito";
+                _tipoService.DeleteTipoSistema(id);
+            }
+            catch (Exception ex)
+            {
+                objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                objectResponse.success = false;
+                objectResponse.message = ex.Message;
+            }
+
+            return new JsonResult(objectResponse);
+        }
     }
 }
