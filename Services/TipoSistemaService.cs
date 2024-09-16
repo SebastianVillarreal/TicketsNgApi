@@ -67,6 +67,39 @@ namespace reportesApi.Services
             return lista;
 
         }
+
+        public List<TipoSistemaModel> GetTipoSistemaById(int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<TipoSistemaModel> lista = new List<TipoSistemaModel>();
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id });
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetTipoSistemaById", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new TipoSistemaModel
+                        {
+                            TipoSistema_Id = int.Parse(dr["Id"].ToString()),
+                            TipoSistema_Descripcion = dr["Descripcion"].ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+            return lista;
+        }
         
     }
 }
