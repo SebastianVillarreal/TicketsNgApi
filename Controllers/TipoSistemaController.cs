@@ -93,7 +93,7 @@ namespace reportesApi.Controllers
             return new JsonResult(objectResponse);
         }
 
-        [HttpPost("UpdateTipoSistema")]
+        [HttpPut("UpdateTipoSistema")]
         public IActionResult UpdateTipoSistema([FromBody] TipoSistemaModel req)
         {
             var objectResponse = Helper.GetStructResponse();
