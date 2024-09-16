@@ -35,7 +35,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _tipoService.InsertTipo(req);
@@ -119,13 +119,13 @@ namespace reportesApi.Controllers
             return new JsonResult(objectResponse);
         }
         
-                [HttpDelete("DeleteTipo")]
+        [HttpDelete("DeleteTipo")]
         public IActionResult DeleteTipo([FromQuery] int Id )
         {
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _tipoService.DeleteTipo(Id);
