@@ -35,7 +35,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _bitacoraService.InsertCambioTicket(req);
@@ -101,7 +101,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _bitacoraService.UpdateCambioTicket(req);
@@ -124,7 +124,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _bitacoraService.DeleteCambioTicket(Id);

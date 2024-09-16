@@ -41,7 +41,7 @@ namespace reportesApi.Controllers
            
             var loginResponse = _loginService.Login(user.Username, user.Userpassword);
 
-            
+         
            
                 if (loginResponse.Id != 0)
                 {
