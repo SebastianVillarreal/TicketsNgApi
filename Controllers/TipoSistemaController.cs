@@ -116,7 +116,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpDelete("DeleteTipoSistema")]
-        public IActionResult DeleteTipoSistema([FromQuery] int id)
+        public IActionResult DeleteTipoSistema([FromQuery] int Id)
         {
             var objectResponse = Helper.GetStructResponse();
             try
@@ -124,7 +124,7 @@ namespace reportesApi.Controllers
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
-                _tipoService.DeleteTipoSistema(id);
+                _tipoService.DeleteTipoSistema(Id);
             }
             catch (Exception ex)
             {
