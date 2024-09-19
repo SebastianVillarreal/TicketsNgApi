@@ -28,7 +28,7 @@ namespace reportesApi.Services
             parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = sistema.Sistema_Nombre });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Estatus});
             parametros.Add(new SqlParameter { ParameterName = "@UsuarioRegistra", SqlDbType = SqlDbType.Int, Value = sistema.Usuario_Registra });
-            parametros.Add(new SqlParameter { ParameterName = "@Tipo", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Tipo });
+            parametros.Add(new SqlParameter { ParameterName = "@Tipo", SqlDbType = SqlDbType.Int, Value = sistema.Tipo_Id });
 
             try
             {
@@ -61,7 +61,8 @@ namespace reportesApi.Services
                             Sistema_Estatus = int.Parse(dr["Estatus"].ToString()),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Fecha_Registro = dr["FechaRegistro"].ToString(),
-                            Sistema_Tipo = int.Parse(dr["TipoId"].ToString())
+                            Tipo_Id = int.Parse(dr["TipoId"].ToString()),
+                            Tipo_Descripcion = dr["TipoDescripcion"].ToString()
                         });
                     }
                 }
@@ -100,7 +101,8 @@ namespace reportesApi.Services
                             Sistema_Estatus = int.Parse(dr["Estatus"].ToString()),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Fecha_Registro = dr["FechaRegistro"].ToString(),
-                            Sistema_Tipo = int.Parse(dr["Tipo"].ToString())
+                            Tipo_Id = int.Parse(dr["TipoId"].ToString()),
+                            Tipo_Descripcion = dr["TipoDescripcion"].ToString()
                         });
                     }
                 }
@@ -124,7 +126,7 @@ namespace reportesApi.Services
             parametros.Add(new SqlParameter { ParameterName = "@Nombre", SqlDbType = SqlDbType.VarChar, Value = sistema.Sistema_Nombre });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Estatus});
             parametros.Add(new SqlParameter { ParameterName = "@UsuarioRegistra", SqlDbType = SqlDbType.Int, Value = sistema.Usuario_Registra });
-            parametros.Add(new SqlParameter { ParameterName = "@Tipo", SqlDbType = SqlDbType.Int, Value = sistema.Sistema_Tipo });
+            parametros.Add(new SqlParameter { ParameterName = "@Tipo", SqlDbType = SqlDbType.Int, Value = sistema.Tipo_Id });
 
             try
             {

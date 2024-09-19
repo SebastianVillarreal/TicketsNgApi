@@ -100,6 +100,44 @@ namespace reportesApi.Services
 
             return lista;
         }
+
+        public void UpdateTipoSistema (TipoSistemaModel tipo)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = tipo.TipoSistema_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@Descripcion", SqlDbType = SqlDbType.VarChar, Value = tipo.TipoSistema_Descripcion});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_UpdateTipoSistema", parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+        public void DeleteTipoSistema (int id)
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            parametros.Add(new SqlParameter {ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id});
+
+            try
+            {
+                dac.ExecuteNonQuery("sp_DeleteTipoSistema", parametros);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+
+        }
         
     }
 }
