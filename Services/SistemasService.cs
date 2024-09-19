@@ -61,7 +61,7 @@ namespace reportesApi.Services
                             Sistema_Estatus = int.Parse(dr["Estatus"].ToString()),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Fecha_Registro = dr["FechaRegistro"].ToString(),
-                            Sistema_Tipo = int.Parse(dr["Tipo"].ToString())
+                            Sistema_Tipo = int.Parse(dr["TipoId"].ToString())
                         });
                     }
                 }
