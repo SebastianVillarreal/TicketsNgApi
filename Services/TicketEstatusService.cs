@@ -38,6 +38,7 @@ namespace reportesApi.Services
                         lista.Add(new TicketEstatusModelGet
                         {
                             Ticket_Id = int.Parse(dr["Id"].ToString()),
+                            Ticket_Titulo = dr["Titulo"].ToString(),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
                             Comentarios = dr["Comentarios"].ToString(),
                             Ticket_Fecha = dr["Fecha"].ToString(),
@@ -45,6 +46,10 @@ namespace reportesApi.Services
                             Tipo_Ticket_Nombre = dr["Tipo"].ToString(),
                             Estatus_Id = int.Parse(dr["EstatusId"].ToString()),
                             Estatus_Nombre = dr["Estatus"].ToString(),
+                            Modulo_Id = int.Parse(dr["ModuloId"].ToString()),
+                            Modulo_Nombre = dr["Modulo"].ToString(),
+                            Sistema_Id = int.Parse(dr["SistemaId"].ToString()),
+                            Sistema_Nombre = dr["Sistema"].ToString(),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Usuario_Asignado = dr["UsuarioAsignado"].ToString()
                         });
