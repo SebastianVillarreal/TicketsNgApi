@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _sistemasService.InsertSistema(req);
@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _sistemasService.UpdateSistema(req);
@@ -127,7 +127,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _sistemasService.DeleteSistema(Id);

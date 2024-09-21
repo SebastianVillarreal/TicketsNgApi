@@ -35,7 +35,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _ticketUsuarioService.InsertTicketUsuario(req);
@@ -102,7 +102,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _ticketUsuarioService.UpdateTicketUsuario(req);
@@ -125,7 +125,7 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.OK;
+                objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _ticketUsuarioService.DeleteTicketUsuario(Id);
