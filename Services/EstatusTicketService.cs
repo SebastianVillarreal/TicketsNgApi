@@ -144,5 +144,86 @@ namespace reportesApi.Services
             }
         }
 
+
+        public List<EstatusTicketModelDetail> GetAllEstatusDetail()
+        {
+            ArrayList parametros = new ArrayList();
+            ConexionDataAccess dac = new ConexionDataAccess(connection);
+
+            List<EstatusTicketModelDetail> lista = new List<EstatusTicketModelDetail>();
+
+            try
+            {
+                DataSet ds = dac.Fill("sp_GetAllEstatusTickets", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach(DataRow dr in ds.Tables[0].Rows)
+                    {
+                        lista.Add(new EstatusTicketModelDetail
+                        {
+                            Estatus_Id = int.Parse(dr["Id"].ToString()),
+                            Estatus_Nombre = dr["Nombre"].ToString(),
+                            Estatus_Activo = int.Parse(dr["Activo"].ToString()),
+                            Tickets = new List<TicketEstatusModelGet>()
+                    });
+                    }
+
+                    //
+
+
+
+                    parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = "" });
+                    parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = ""});
+                    try
+                    {
+                        DataSet dsTickets = dac.Fill("GetTicketsEstatus", parametros);
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in dsTickets.Tables[0].Rows)
+                            {
+                                var estatus = lista.FirstOrDefault(estatusDetail => estatusDetail.Estatus_Id == 1);
+
+                                if (estatus != null)
+                                {
+                                    estatus.Tickets.Add(new TicketEstatusModelGet
+                                    {
+                                        Ticket_Id = int.Parse(dr["Id"].ToString()),
+                                        Ticket_Titulo = dr["Titulo"].ToString(),
+                                        Ticket_Descripcion = dr["Descripcion"].ToString(),
+                                        Comentarios = dr["Comentarios"].ToString(),
+                                        Ticket_Fecha = dr["Fecha"].ToString(),
+                                        Tipo_Ticket_Id = int.Parse(dr["TipoId"].ToString()),
+                                        Tipo_Ticket_Nombre = dr["Tipo"].ToString(),
+                                        Estatus_Id = int.Parse(dr["EstatusId"].ToString()),
+                                        Estatus_Nombre = dr["Estatus"].ToString(),
+                                        Modulo_Id = int.Parse(dr["ModuloId"].ToString()),
+                                        Modulo_Nombre = dr["Modulo"].ToString(),
+                                        Sistema_Id = int.Parse(dr["SistemaId"].ToString()),
+                                        Sistema_Nombre = dr["Sistema"].ToString(),
+                                        Usuario_Registra = dr["UsuarioRegistra"].ToString(),
+                                        Usuario_Asignado = dr["UsuarioAsignado"].ToString()
+                                    });
+                                }
+
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        throw ex;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+
+            return lista;
+        } 
     }
 }
