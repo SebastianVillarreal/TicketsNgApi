@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket Actualizado";
                 _ticketService.UpdateTicket(req);
             }
 

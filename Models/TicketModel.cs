@@ -29,6 +29,7 @@ namespace reportesApi.Models
     {
         public int Ticket_Id { get; set; }
         public int Usuario_Registra {get; set;}
+        public int Usuario_Asignado {get; set;}
         public int Ticket_Tipo {get; set;}
         public int Modulo_Id {get; set;}
         public string Ticket_Descripcion {get; set;}
