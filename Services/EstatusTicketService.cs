@@ -165,13 +165,8 @@ namespace reportesApi.Services
                             Estatus_Nombre = dr["Nombre"].ToString(),
                             Estatus_Activo = int.Parse(dr["Activo"].ToString()),
                             Tickets = new List<TicketEstatusModelGet>()
-                    });
+                        });
                     }
-
-                    //
-
-
-
                     parametros.Add(new SqlParameter { ParameterName = "@pFechaInicial", SqlDbType = SqlDbType.VarChar, Value = "" });
                     parametros.Add(new SqlParameter { ParameterName = "@pFechaFinal", SqlDbType = SqlDbType.VarChar, Value = ""});
                     try
