@@ -205,6 +205,7 @@ namespace reportesApi.Services
                             Sistema_Id = int.Parse(dr["SistemaId"].ToString()),
                             Sistema_Nombre = dr["Sistema"].ToString(),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
+                            Usuario_Asignado_Id = int.Parse(dr["UsuarioAsignadoId"].ToString()),
                             Usuario_Asignado = dr["UsuarioAsignado"].ToString()
                         });
                     }

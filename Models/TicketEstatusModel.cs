@@ -17,6 +17,7 @@ namespace reportesApi.Models
         public int Modulo_Id {get; set;}
         public string Modulo_Nombre {get; set;}
         public string Usuario_Registra {get; set;}
+        public int Usuario_Asignado_Id {get; set;}
         public string Usuario_Asignado {get; set;}
         public string Comentarios {get; set;}
         public fileModel Adjuntos {get; set;}
