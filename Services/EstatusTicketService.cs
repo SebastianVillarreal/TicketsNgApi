@@ -181,7 +181,7 @@ namespace reportesApi.Services
                         {
                             foreach (DataRow dr in dsTickets.Tables[0].Rows)
                             {
-                                var estatus = lista.FirstOrDefault(estatusDetail => estatusDetail.Estatus_Id == 1);
+                                var estatus = lista.FirstOrDefault(estatusDetail => estatusDetail.Estatus_Id.ToString() == dr["EstatusId"].ToString());
 
                                 if (estatus != null)
                                 {
