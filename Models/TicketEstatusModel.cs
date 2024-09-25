@@ -20,7 +20,7 @@ namespace reportesApi.Models
         public int Usuario_Asignado_Id {get; set;}
         public string Usuario_Asignado {get; set;}
         public string Comentarios {get; set;}
-        public fileModel Adjuntos {get; set;}
+        public string[][] Archivos {get; set;}
 
     }
 }

@@ -6,6 +6,7 @@ using reportesApi.DataContext;
 using reportesApi.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace reportesApi.Services
 {
@@ -206,7 +207,8 @@ namespace reportesApi.Services
                             Sistema_Nombre = dr["Sistema"].ToString(),
                             Usuario_Registra = dr["UsuarioRegistra"].ToString(),
                             Usuario_Asignado_Id = int.Parse(dr["UsuarioAsignadoId"].ToString()),
-                            Usuario_Asignado = dr["UsuarioAsignado"].ToString()
+                            Usuario_Asignado = dr["UsuarioAsignado"].ToString(),
+                            Archivos = ObtenerArchivosPorId(dr["Id"].ToString())
                         });
                     }
                 }
@@ -217,6 +219,22 @@ namespace reportesApi.Services
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
+        }
+        public string[][] ObtenerArchivosPorId(string id)
+        {
+            string carpeta = Path.Combine(Directory.GetCurrentDirectory(), "uploads", id);
+            if (!Directory.Exists(carpeta))
+            {
+                return new string[0][];
+            }
+            var archivos = Directory.GetFiles(carpeta);
+            var archivosInfo = archivos.Select(archivo =>
+            {
+                FileInfo fi = new FileInfo(archivo);
+                return new string[] { fi.Name, fi.Extension };
+            }).ToArray();
+
+            return archivosInfo;
         }
     }
 }

@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
+using System.IO;
+
 namespace reportesApi.Models
 {
     public class TicketModelInsert
@@ -11,6 +15,8 @@ namespace reportesApi.Models
 
         public string Ticket_Titulo {get; set;}
         public int Ticket_Estatus {get; set;}
+        public IEnumerable<IFormFile> Ticket_Archivos { get; set; }
+
     }
 
     public class TicketModelGet

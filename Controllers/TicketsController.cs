@@ -30,7 +30,7 @@ namespace reportesApi.Controllers
         }
 
         [HttpPost("InsertTicket")]
-        public IActionResult InsertTicket([FromBody] TicketModelInsert req )
+        public IActionResult InsertTicket([FromForm] TicketModelInsert req )
         {
             var objectResponse = Helper.GetStructResponse();
             try

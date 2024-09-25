@@ -6,17 +6,22 @@ using reportesApi.DataContext;
 using reportesApi.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace reportesApi.Services
 {
     public class TicketService
     {
         private  string connection;
-        
-        
-        public TicketService(IMarcatelDatabaseSetting settings)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+
+        public TicketService(IMarcatelDatabaseSetting settings, IWebHostEnvironment hostingEnviroment)
         {
              connection = settings.ConnectionString;
+             _hostingEnvironment = hostingEnviroment;
         }
 
         
@@ -35,7 +40,30 @@ namespace reportesApi.Services
 
             try
             {
-                dac.ExecuteNonQuery("sp_InsertTicket", parametros);
+
+                DataSet ds = dac.Fill("sp_InsertTicket", parametros);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    foreach (IFormFile file in ticket.Ticket_Archivos)
+                    {
+                        if (file.Length > 0)
+                        {
+                            FileInfo fi = new FileInfo(file.FileName);
+                            string id = ds.Tables[0].Rows[0]["Id"].ToString();
+                            string uploads = Path.Combine(Directory.GetCurrentDirectory(), "uploads", id);
+                            if (!Directory.Exists(uploads))
+                            {
+                                Directory.CreateDirectory(uploads);
+                            }
+                            string filePath = Path.Combine(uploads, file.FileName);
+                            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                            {
+                                file.CopyToAsync(fileStream);
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -133,8 +161,8 @@ namespace reportesApi.Services
             parametros.Add(new SqlParameter { ParameterName = "@Descripcion", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Descripcion });
             parametros.Add(new SqlParameter { ParameterName = "@Comentarios", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Comentarios });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Estatus});
-            parametros.Add(new SqlParameter { ParameterName = "@Titulo", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Titulo});
-            parametros.Add(new SqlParameter { ParameterName = "@IdUsuarioAsignado", SqlDbType = SqlDbType.Int, Value = ticket.Usuario_Asignado});
+            parametros.Add(new SqlParameter {ParameterName = "@Titulo", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Titulo});
+
 
             try
             {
