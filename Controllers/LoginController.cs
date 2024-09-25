@@ -15,10 +15,7 @@ namespace reportesApi.Controllers
     {
         private readonly LoginService _loginService;
         private readonly ILogger<LoginController> _logger;
-  
         private readonly IJwtAuthenticationService _authService;
-
-
         Encrypt enc = new Encrypt();
 
         public LoginController(LoginService loginservice, ILogger<LoginController> logger, IJwtAuthenticationService authService) {
@@ -37,15 +34,12 @@ namespace reportesApi.Controllers
             result.Response.data = new DataResponseLogin();
             result.Response.data.Usuario = new UsuarioModel();
           
-                string cryptedPass = enc.GetSHA256(user.Userpassword);
-           
-            var loginResponse = _loginService.Login(user.Username, user.Userpassword);
-
-         
+            string cryptedPass = enc.GetSHA256(user.Userpassword);
+            var loginResponse = _loginService.Login(user.Username, cryptedPass);
            
                 if (loginResponse.Id != 0)
                 {
-                    result.StatusCode = (int)HttpStatusCode.OK;
+                    result.StatusCode = (int)HttpStatusCode.Created;
                     result.Error = false;
                     result.Success = true;
                     result.Message = "Bienvenido";
@@ -60,17 +54,8 @@ namespace reportesApi.Controllers
                     result.Error = true;
                     result.Success = false;
                     result.Message = "Usuario o contraseña incorrecto,";
-
                 }
-
-            
-           
-          
-           
-            
             return new JsonResult(result);
-
         }
-
     }
 }

@@ -106,16 +106,14 @@ namespace reportesApi.Controllers
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
                 _ticketService.UpdateTicket(req);
-
             }
 
             catch (Exception ex)
             {
-                objectResponse.StatusCode = (int)HttpStatusCode.InternalServerError;
+                objectResponse.StatusCode = (int)HttpStatusCode.Conflict;
                 objectResponse.success = false;
                 objectResponse.message = ex.Message;
             }
-
             return new JsonResult(objectResponse);
         }
 

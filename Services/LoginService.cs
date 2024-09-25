@@ -11,7 +11,6 @@ namespace reportesApi.Services
     {
         private  string connection;
         
-        
         public LoginService(IMarcatelDatabaseSetting settings)
         {
              connection = settings.ConnectionString;
@@ -19,7 +18,6 @@ namespace reportesApi.Services
 
         public UsuarioModel Login(string user, string pass)
         {
-            
             UsuarioModel usuario = new UsuarioModel();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
             try
@@ -32,13 +30,10 @@ namespace reportesApi.Services
                 {
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
+                        usuario.Id = int.Parse(row["Id"].ToString());
                         usuario.NombreUsuario = row["NombreUsuario"].ToString();
                         usuario.NombrePersona = row["NombrePersona"].ToString();
-                        usuario.IdSucursal = int.Parse(row["IdSucursal"].ToString());
-                        usuario.NombreSucursal = row["NombreSucursal"].ToString();
-                        usuario.Id = int.Parse(row["Id"].ToString());
-                        usuario.IdPerfil = int.Parse(row["id_perfil"].ToString());
-                    
+                        usuario.IdPerfil = int.Parse(row["IdPerfil"].ToString());                    
                     }
                 }
                 return usuario;
@@ -46,8 +41,7 @@ namespace reportesApi.Services
             catch (Exception ex)
             {
                 throw ex;
-            }
-           
+            }  
         }
     }
 }
