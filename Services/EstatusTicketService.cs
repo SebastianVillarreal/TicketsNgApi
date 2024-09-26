@@ -195,7 +195,7 @@ namespace reportesApi.Services
                             Ticket_Id = int.Parse(dr["Id"].ToString()),
                             Ticket_Titulo = dr["Titulo"].ToString(),
                             Ticket_Descripcion = dr["Descripcion"].ToString(),
-                            Comentarios = dr["Comentarios"].ToString(),
+                            Ticket_Comentarios = dr["Comentarios"].ToString(),
                             Ticket_Fecha = dr["Fecha"].ToString(),
                             Tipo_Ticket_Id = int.Parse(dr["TipoId"].ToString()),
                             Tipo_Ticket_Nombre = dr["Tipo"].ToString(),
@@ -220,18 +220,18 @@ namespace reportesApi.Services
                 throw ex;
             }
         }
-        public string[][] ObtenerArchivosPorId(string id)
+        public ArchivoInfo[] ObtenerArchivosPorId(string id)
         {
             string carpeta = Path.Combine(Directory.GetCurrentDirectory(), "uploads", id);
             if (!Directory.Exists(carpeta))
             {
-                return new string[0][];
+                return new ArchivoInfo[0];
             }
             var archivos = Directory.GetFiles(carpeta);
             var archivosInfo = archivos.Select(archivo =>
             {
                 FileInfo fi = new FileInfo(archivo);
-                return new string[] { fi.Name, fi.Extension };
+                return new ArchivoInfo { FileName = fi.Name, Format = fi.Extension.Split(".")[1] };
             }).ToArray();
 
             return archivosInfo;

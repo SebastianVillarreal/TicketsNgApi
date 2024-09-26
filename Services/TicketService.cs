@@ -156,13 +156,13 @@ namespace reportesApi.Services
 
             parametros.Add(new SqlParameter { ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Id });
             parametros.Add(new SqlParameter { ParameterName = "@IdUsuarioRegistra", SqlDbType = SqlDbType.Int, Value = ticket.Usuario_Registra });
+            parametros.Add(new SqlParameter { ParameterName = "@IdUsuarioAsignado", SqlDbType = SqlDbType.Int, Value = ticket.Usuario_Asignado });
             parametros.Add(new SqlParameter { ParameterName = "@TipoTicket", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Tipo });
             parametros.Add(new SqlParameter { ParameterName = "@IdModulo", SqlDbType = SqlDbType.Int, Value = ticket.Modulo_Id });
             parametros.Add(new SqlParameter { ParameterName = "@Descripcion", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Descripcion });
             parametros.Add(new SqlParameter { ParameterName = "@Comentarios", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Comentarios });
             parametros.Add(new SqlParameter { ParameterName = "@Estatus", SqlDbType = SqlDbType.Int, Value = ticket.Ticket_Estatus});
             parametros.Add(new SqlParameter {ParameterName = "@Titulo", SqlDbType = SqlDbType.VarChar, Value = ticket.Ticket_Titulo});
-
 
             try
             {

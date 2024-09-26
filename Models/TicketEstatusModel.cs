@@ -19,8 +19,13 @@ namespace reportesApi.Models
         public string Usuario_Registra {get; set;}
         public int Usuario_Asignado_Id {get; set;}
         public string Usuario_Asignado {get; set;}
-        public string Comentarios {get; set;}
-        public string[][] Archivos {get; set;}
+        public string Ticket_Comentarios {get; set;}
+        public ArchivoInfo[] Archivos {get; set;}
+    }
 
+    public class ArchivoInfo
+    {
+        public string FileName { get; set; }
+        public string Format { get; set; }
     }
 }
