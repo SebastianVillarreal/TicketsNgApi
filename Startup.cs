@@ -18,6 +18,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace reportesApi
 {
@@ -154,6 +156,17 @@ namespace reportesApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Sirve archivos estáticos
+            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "uploads")),
+                RequestPath = "/uploads"
+            });
+
             //  app.ConfigureExceptionHandler(logger);
             app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
