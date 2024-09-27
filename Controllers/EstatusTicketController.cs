@@ -152,7 +152,6 @@ namespace reportesApi.Controllers
                 var authHeader = Request.Headers["Authorization"].ToString();
                 var token = authHeader.Substring("Bearer ".Length).Trim();
                 var userId = _authService.GetUserIdFromToken(token);
-                Console.WriteLine("Kevin " +userId);
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
