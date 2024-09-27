@@ -37,24 +37,24 @@ namespace reportesApi.Controllers
             string cryptedPass = enc.GetSHA256(user.Userpassword);
             var loginResponse = _loginService.Login(user.Username, cryptedPass);
            
-                if (loginResponse.Id != 0)
-                {
-                    result.StatusCode = (int)HttpStatusCode.Created;
-                    result.Error = false;
-                    result.Success = true;
-                    result.Message = "Bienvenido";
-                    result.Response.data.Usuario = loginResponse;
-                    result.Response.data.Status = true;
-                    result.Response.data.Mensaje = "Bienvenido";
-                    var token = _authService.Authenticate(user.Username, cryptedPass);
-                    result.Response.data.Token = token;
-                }
-                else
-                {
-                    result.Error = true;
-                    result.Success = false;
-                    result.Message = "Usuario o contraseña incorrecto,";
-                }
+            if (loginResponse.Id != 0)
+            {
+                result.StatusCode = (int)HttpStatusCode.Created;
+                result.Error = false;
+                result.Success = true;
+                result.Message = "Bienvenido";
+                result.Response.data.Usuario = loginResponse;
+                result.Response.data.Status = true;
+                result.Response.data.Mensaje = "Bienvenido";
+                var token = _authService.Authenticate(user.Username, loginResponse.Id.ToString());
+                result.Response.data.Token = token;
+            }
+            else
+            {
+                result.Error = true;
+                result.Success = false;
+                result.Message = "Usuario o contraseña incorrecto,";
+            }
             return new JsonResult(result);
         }
     }

@@ -33,7 +33,8 @@ namespace reportesApi.Services
                         usuario.Id = int.Parse(row["Id"].ToString());
                         usuario.NombreUsuario = row["NombreUsuario"].ToString();
                         usuario.NombrePersona = row["NombrePersona"].ToString();
-                        usuario.IdPerfil = int.Parse(row["IdPerfil"].ToString());                    
+                        usuario.IdPerfil = int.Parse(row["IdPerfil"].ToString());
+                        usuario.NombrePerfil = row["Perfil"].ToString();
                     }
                 }
                 return usuario;

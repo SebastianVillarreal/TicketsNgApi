@@ -148,10 +148,15 @@ namespace reportesApi.Controllers
             var objectResponse = Helper.GetStructResponse();
             try
             {
+                // Obtener el token del encabezado Authorization
+                var authHeader = Request.Headers["Authorization"].ToString();
+                var token = authHeader.Substring("Bearer ".Length).Trim();
+                var userId = _authService.GetUserIdFromToken(token);
+                Console.WriteLine("Kevin " +userId);
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
                 objectResponse.message = "data cargada con éxito";
-                var resultado = _estatusService.GetAllEstatusDetail();
+                var resultado = _estatusService.GetAllEstatusDetail(userId);
                 objectResponse.response = resultado;
             }
             catch (Exception ex)

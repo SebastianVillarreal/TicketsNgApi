@@ -146,7 +146,7 @@ namespace reportesApi.Services
         }
 
 
-        public List<EstatusTicketModelDetail> GetAllEstatusDetail()
+        public List<EstatusTicketModelDetail> GetAllEstatusDetail(string userId)
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
@@ -163,7 +163,7 @@ namespace reportesApi.Services
                             Estatus_Id = int.Parse(dr["Id"].ToString()),
                             Estatus_Nombre = dr["Nombre"].ToString(),
                             Estatus_Activo = int.Parse(dr["Activo"].ToString()),
-                            Tickets = this.GetTicketsByEstatus(int.Parse(dr["Id"].ToString()))
+                            Tickets = this.GetTicketsByEstatus(int.Parse(dr["Id"].ToString()), userId)
                         });
                     }
                 }
@@ -177,12 +177,13 @@ namespace reportesApi.Services
             return lista;
         }
 
-        public List<TicketEstatusModelGet> GetTicketsByEstatus (int Estatus_Id)
+        public List<TicketEstatusModelGet> GetTicketsByEstatus (int Estatus_Id, string userId)
         {
             ArrayList parametros = new ArrayList();
             ConexionDataAccess dac = new ConexionDataAccess(connection);
             List<TicketEstatusModelGet> lista = new List<TicketEstatusModelGet>();
             parametros.Add(new SqlParameter { ParameterName = "@pIdEstatus", SqlDbType = SqlDbType.VarChar, Value = Estatus_Id });
+            parametros.Add(new SqlParameter { ParameterName = "@pUserId", SqlDbType = SqlDbType.VarChar, Value = userId });
             try
             {
                 DataSet ds = dac.Fill("GetTicketsByEstatus", parametros);

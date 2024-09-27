@@ -28,6 +28,34 @@ namespace reportesApi.Services
             return token;
         }
 
+        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key)),
+                ValidateLifetime = false
+            };
+
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken securityToken);
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Token inválido");
+
+            return principal;
+        }
+
+        public string GetUserIdFromToken(string token)
+        {
+            var principal = GetPrincipalFromExpiredToken(token);
+            var userIdClaim = principal.FindFirst(ClaimTypes.Sid);
+            return userIdClaim?.Value;
+        }
+
         public string GenerateJSONWebToken(string email, string idUsername)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
@@ -59,5 +87,6 @@ namespace reportesApi.Services
     {
         string Authenticate(string username, string idUsername);
         string GenerateJSONWebToken(string email, string idUsername);
+        string GetUserIdFromToken(string token);
     }
 }
