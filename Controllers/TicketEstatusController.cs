@@ -38,7 +38,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tickets-Estatus cargados con éxito";
                 var resultado = _ticketEstatusService.GetTicketEstatus(FechaInicial, FechaFinal);
                 objectResponse.response = resultado;
             }

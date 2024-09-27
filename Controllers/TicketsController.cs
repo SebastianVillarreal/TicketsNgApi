@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket insertado correctamente";
                 _ticketService.InsertTicket(req);
 
             }
@@ -60,7 +60,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tickets cargados con éxito";
                 var resultado = _ticketService.GetAllTickets();
                 objectResponse.response = resultado;
             }
@@ -82,7 +82,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket cargado con éxito";
                 var resultado = _ticketService.GetTicketById(Id);
                 objectResponse.response = resultado;
             }
@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "Ticket Actualizado";
+                objectResponse.message = "Ticket actualizado correctamente";
                 _ticketService.UpdateTicket(req);
             }
 
@@ -125,7 +125,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket eliminado correctamente";
                 _ticketService.DeleteTicket(Id);
 
             }

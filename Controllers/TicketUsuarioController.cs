@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket-Usuario insertado correctamente";
                 _ticketUsuarioService.InsertTicketUsuario(req);
 
             }
@@ -60,7 +60,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tickets-Usuarios cargados con éxito";
                 var resultado = _ticketUsuarioService.GetAllTicketsUsuarios();
                 objectResponse.response = resultado;
             }
@@ -82,7 +82,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket-Usuario cargado con éxito";
                 var resultado = _ticketUsuarioService.GetTicketUsuarioById(Id);
                 objectResponse.response = resultado;
             }
@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket-Usuario actualizado correctamente";
                 _ticketUsuarioService.UpdateTicketUsuario(req);
 
             }
@@ -127,7 +127,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Ticket-Usuario eliminado correctamente";
                 _ticketUsuarioService.DeleteTicketUsuario(Id);
 
             }

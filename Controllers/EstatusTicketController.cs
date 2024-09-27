@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Estatus insertado correctamente";
                 _estatusService.InsertEstatus(req);
 
             }
@@ -60,7 +60,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Estatus cargados con éxito";
                 var resultado = _estatusService.GetAllEstatus();
                 objectResponse.response = resultado;
             }
@@ -82,7 +82,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Estatus cargado con éxito";
                 var resultado = _estatusService.GetEstatusById(Id);
                 objectResponse.response = resultado;
             }
@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "Estatus Actualizado Correctamente";
+                objectResponse.message = "Estatus actualizado correctamente";
                 _estatusService.UpdateEstatus(req);
 
             }
@@ -127,7 +127,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Estatus eliminado correctamente";
                 _estatusService.DeleteEstatus(Id);
 
             }

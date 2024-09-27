@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de ticket insertado correctamente";
                 _tipoService.InsertTipo(req);
 
             }
@@ -60,7 +60,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipos de tickets cargados con éxito";
                 var resultado = _tipoService.GetAllTipos();
                 objectResponse.response = resultado;
             }
@@ -82,7 +82,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de ticket cargado con éxito";
                 var resultado = _tipoService.GetTipoById(Id);
                 objectResponse.response = resultado;
             }
@@ -104,7 +104,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "Tipo Actualizado Correctamente";
+                objectResponse.message = "Tipo de ticket actualizado correctamente";
                 _tipoService.UpdateTipo(req);
 
             }
@@ -127,7 +127,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de ticket eliminado correctamente";
                 _tipoService.DeleteTipo(Id);
 
             }

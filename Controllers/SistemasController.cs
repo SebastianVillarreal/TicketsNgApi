@@ -39,7 +39,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Sistema insertado correctamente";
                 _sistemasService.InsertSistema(req);
 
             }
@@ -62,7 +62,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Sistemas cargados con éxito";
                 var resultado = _sistemasService.GetAllSistemas();
                 objectResponse.response = resultado;
             }
@@ -84,7 +84,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Sistema cargado con éxito";
                 var resultado = _sistemasService.GetSistemaById(Id);
                 objectResponse.response = resultado;
             }
@@ -106,7 +106,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Sistema actualizado correctamente";
                 _sistemasService.UpdateSistema(req);
 
             }
@@ -129,7 +129,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Sistema eliminado correctamente";
                 _sistemasService.DeleteSistema(Id);
 
             }

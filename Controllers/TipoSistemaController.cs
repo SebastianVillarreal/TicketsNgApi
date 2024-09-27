@@ -36,7 +36,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de sistema insertado correctamente";
                 _tipoService.InsertTipoSistema(req);
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipos de sistemas cargados con éxito";
                 var resultado = _tipoService.GetAllTiposSistemas();
                 objectResponse.response = resultado;
             }
@@ -79,7 +79,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de sistema cargado con éxito";
                 var resultado = _tipoService.GetTipoSistemaById(id);
                 objectResponse.response = resultado;
             }
@@ -101,7 +101,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de sistema actualizado correctamente";
                 _tipoService.UpdateTipoSistema(req);
 
             }
@@ -123,7 +123,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Tipo de sistema eliminado correctamente";
                 _tipoService.DeleteTipoSistema(Id);
             }
             catch (Exception ex)

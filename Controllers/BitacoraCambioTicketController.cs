@@ -37,7 +37,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Cambio insertado correctamente";
                 _bitacoraService.InsertCambioTicket(req);
 
             }
@@ -60,7 +60,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Bitácora cargada con éxito";
                 var resultado = _bitacoraService.GetAllBitacoraCambiosTickets();
                 objectResponse.response = resultado;
             }
@@ -81,7 +81,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Cambio cargado con éxito";
                 var resultado = _bitacoraService.GetCambioTicketById(Id);
                 objectResponse.response = resultado;
             }
@@ -103,7 +103,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Cambio actualizado correctamente";
                 _bitacoraService.UpdateCambioTicket(req);
 
             }
@@ -126,7 +126,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Cambio eliminado correctamente";
                 _bitacoraService.DeleteCambioTicket(Id);
 
             }

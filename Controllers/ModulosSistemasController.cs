@@ -39,7 +39,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Módulo insertado correctamente";
                 _modulosService.InsertModulo(req);
 
             }
@@ -62,7 +62,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Módulos cargados con éxito";
                 var resultado = _modulosService.GetAllModulos();
                 objectResponse.response = resultado;
             }
@@ -84,7 +84,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.OK;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Módulo cargado con éxito";
                 var resultado = _modulosService.GetModuloById(Id);
                 objectResponse.response = resultado;
             }
@@ -106,7 +106,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Módulo actualizado correctamente";
                 _modulosService.UpdateModulo(req);
 
             }
@@ -129,7 +129,7 @@ namespace reportesApi.Controllers
             {
                 objectResponse.StatusCode = (int)HttpStatusCode.Created;
                 objectResponse.success = true;
-                objectResponse.message = "data cargada con éxito";
+                objectResponse.message = "Módulo eliminado correctamente";
                 _modulosService.DeleteModulo(Id);
                 
             }
