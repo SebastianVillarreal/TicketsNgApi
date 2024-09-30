@@ -10,4 +10,10 @@ namespace reportesApi.Models
         public string NombreSucursal { get; set; }
         public int IdPerfil { get; set; }
     }
+
+    public class UsuarioModelGet
+    {
+        public int Id {get; set;}
+        public string NombreUsuario {get; set;}
+    }
 }
