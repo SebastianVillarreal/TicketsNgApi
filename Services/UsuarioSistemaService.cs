@@ -56,6 +56,8 @@ namespace reportesApi.Services
                         lista.Add(new UsuarioSistemaModelGet
                         {
                             Id = int.Parse(dr["Id"].ToString()),
+                            Sistema_Id = int.Parse(dr["IdSistema"].ToString()),
+                            Usuario_Id = int.Parse(dr["IdUsuario"].ToString()),
                             Sistema = dr["Sistema"].ToString(),
                             Usuario = dr["Usuario"].ToString(),
                             Estatus = int.Parse(dr["Estatus"].ToString()),
